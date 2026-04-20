@@ -3,12 +3,12 @@
 pipeline {
     agent any
     environment {
-        DOCKER_REPO = "dataguru97/jenkins-shared-mlops-project"
+        DOCKER_REPO = "kirtish07/jenkins-shared-mlops-project"
     }
     stages {
         stage('Checkout') {
             steps {
-                gitCheckout('https://github.com/data-guru0/MLOPS-Project-Code.git','*/main','github-token')
+                gitCheckout('https://github.com/kiwa-debug/MLOPS-Jenkins-shared-lib.git', '*/main', 'github-token')
 
             }
         }
