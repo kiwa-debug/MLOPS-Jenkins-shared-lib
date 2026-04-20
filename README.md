@@ -6,6 +6,25 @@ An end-to-end MLOps project that predicts manufacturing machine efficiency statu
 
 ---
 
+## Live Infrastructure Proof
+
+### GCP VM Instance
+The project runs on a Google Cloud Compute Engine VM (`us-central1-f`) with Docker, Minikube, and Jenkins installed.
+
+![GCP VM Instance](screenshots/gcp-vm.png)
+
+### VM Setup — Docker, Minikube & kubectl
+SSH session showing kubectl installation, Docker network configuration, and Jenkins container launch on the Minikube network.
+
+![GCP SSH Setup](screenshots/gcp-ssh-setup.png)
+
+### Jenkins Pipeline Builds
+Successful CI/CD pipeline runs triggered via GitHub webhooks — builds #2, #3, #4 all passing after the initial setup.
+
+![Jenkins Builds](screenshots/jenkins-builds.png)
+
+---
+
 ## About This Project
 
 In real-world manufacturing environments, predicting machine efficiency in real-time helps reduce downtime, optimize maintenance schedules, and improve overall equipment effectiveness (OEE). This project demonstrates a professional MLOps workflow that centralizes automation logic within a **Jenkins Shared Library**, ensuring that every build and deployment is standardized and reusable.
