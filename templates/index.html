@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <title>Smart Manufacturing — Efficiency Prediction</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                    </svg>
+                    <span>SmartMFG</span>
+                </div>
+                <h1>Machine Efficiency Prediction</h1>
+                <p class="subtitle">Enter sensor and operational parameters to predict manufacturing efficiency status.</p>
+            </header>
+
+            <form method="post" id="predict-form">
+                <div class="form-grid">
+                    {% for feature in features %}
+                    <div class="form-group">
+                        <label for="{{ feature }}">{{ feature.replace('_', ' ').replace('%', '%') }}</label>
+                        <input
+                            type="number"
+                            step="any"
+                            id="{{ feature }}"
+                            name="{{ feature }}"
+                            placeholder="0.00"
+                            required
+                            value="{{ request.form.get(feature, '') }}"
+                        >
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button type="submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Run Prediction
+                </button>
+            </form>
+
+            {% if prediction %}
+            <div class="result-card {% if 'Error' in prediction %}result-error{% elif prediction == 'High' %}result-high{% elif prediction == 'Medium' %}result-medium{% else %}result-low{% endif %}">
+                <div class="result-label">Predicted Efficiency</div>
+                <div class="result-value">{{ prediction }}</div>
+            </div>
+            {% endif %}
+
+            <footer>
+                <p>Smart Manufacturing MLOps Pipeline</p>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,6 @@
+venv/
+.venv/
+MLOPS_PROJECT_Jenkins.egg-info/
+logs/
+__pycache__/
+*.pyc
